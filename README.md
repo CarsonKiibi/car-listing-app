@@ -12,3 +12,8 @@ would be the ability to edit listings, add pictures (or select from stock photos
 randomly generating listings to simulate the experience better, allow the user to have an inventory 
 of purchased, currently listed, or sold cars. Or perhaps a history of those interactions. These 
 features may overstep the requirements of the project so it is purely based on time and complexity.
+
+## User Stories
+
+- As a user, I want to be able to add a detailed car listing to the application
+- As a user, I want to be able to view my listings within the applicatios
