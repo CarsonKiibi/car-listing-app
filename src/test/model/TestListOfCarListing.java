@@ -27,6 +27,9 @@ class TestListOfCarListing {
         assertEquals(0, testListings.getSize());
         testListings.addListingToList(testListing0);
         assertEquals(1, testListings.getSize());
+        List<CarListing> testList2 = new ArrayList<>();
+        testList2.add(testListing0);
+        assertEquals(testList2, testListings.getListings());
     }
 
     @Test
@@ -36,6 +39,8 @@ class TestListOfCarListing {
         testListings.addListingToList(testListing1);
         assertEquals(2, testListings.getSize());
         assertNotEquals(testListing0.getModel(), testListing1.getModel());
+        assertNotEquals(testListing0.getMileage(), testListing1.getMileage());
+        assertNotEquals(testListing0.getYear(), testListing1.getYear());
     }
 
     @Test
