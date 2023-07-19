@@ -54,7 +54,7 @@ public class CarApp {
     // MODIFIES: this
     // EFFECTS: processes user command
 
-    private void processMenuCommand(String command) {
+    public void processMenuCommand(String command) {
         if (command.equals("v")) {
             displayViewListings();
         } else if (command.equals("a")) {
@@ -63,11 +63,12 @@ public class CarApp {
     }
 
     // EFFECTS: displays all currently added listings to ListOfCarListing
-    public void displayViewListings() {
+    public boolean displayViewListings() {
         System.out.println("\tCurrently Posted Listings:");
         List<CarListing> carListings = listOfCarListing.getListings();
         if (carListings.size() == 0) {
             System.out.println("There are currently no listings");
+            return false;
         } else {
             for (CarListing carlisting : carListings) {
                 System.out.print("\t Make: " + carlisting.getMake());
@@ -77,6 +78,7 @@ public class CarApp {
                 System.out.print("\t ID: " + carlisting.getId());
                 System.out.println();
             }
+            return true;
         }
     }
 
