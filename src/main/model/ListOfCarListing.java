@@ -1,6 +1,5 @@
 package model;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,4 +23,5 @@ public class ListOfCarListing {
     public int getSize() {
         return listings.size();
     }
+
 }
