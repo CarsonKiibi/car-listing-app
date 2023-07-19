@@ -23,7 +23,7 @@ class TestListOfCarListing {
     }
 
     @Test
-    void testAddListingToListOne() {
+    void addListingToListOneTest() {
         assertEquals(0, testListings.getSize());
         testListings.addListingToList(testListing0);
         assertEquals(1, testListings.getSize());
@@ -33,7 +33,7 @@ class TestListOfCarListing {
     }
 
     @Test
-    void testAddListingToListTwoDiff() {
+    void addListingToListTwoDiffTest() {
         assertEquals(0, testListings.getSize());
         testListings.addListingToList(testListing0);
         testListings.addListingToList(testListing1);
@@ -44,12 +44,21 @@ class TestListOfCarListing {
     }
 
     @Test
-    void testAddListingToListTwoSame() {
+    void addListingToListTwoSameTest() {
         testListings.addListingToList(testListing1);
         testListings.addListingToList(testListing1Clone);
         assertEquals(2, testListings.getSize());
         assertEquals(testListing1.getMake(), testListing1Clone.getMake());
         assertNotEquals(testListing1.getId(), testListing1Clone.getId());
+    }
+
+    @Test
+    void loopListOfCarListingTest() {
+        assertFalse(ListOfCarListing.loopListOfCarListing(testListings));
+        testListings.addListingToList(testListing0);
+        assertTrue(ListOfCarListing.loopListOfCarListing(testListings));
+        testListings.addListingToList(testListing1);
+        assertTrue(ListOfCarListing.loopListOfCarListing(testListings));
     }
 
 }

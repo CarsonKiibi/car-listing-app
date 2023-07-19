@@ -16,7 +16,7 @@ class TestCarListing {
     }
 
     @Test
-    void testConstructor() {
+    void constructorTest() {
         assertEquals(1, testListing0.getId());
         assertEquals("Ford", testListing0.getMake());
         assertEquals("Raptor", testListing0.getModel());

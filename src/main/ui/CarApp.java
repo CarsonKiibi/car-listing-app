@@ -15,15 +15,15 @@ public class CarApp {
     private CarListing listing;
     private ListOfCarListing listOfCarListing;
 
-
-    // EFFECTS: runs car app, creates new listofcarlisting
+    // MODIFIES: this
+    // EFFECTS: initializes new CarApp and creates ListOfCarListing
     public CarApp() {
         listOfCarListing = new ListOfCarListing();
         runCarApp();
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user input
+    // EFFECTS: starts the car app and processes user input
     private void runCarApp() {
         boolean doContinue = true;
         String command = null;
@@ -51,9 +51,9 @@ public class CarApp {
         System.out.println("\tPress (a) Add Listing");
         System.out.println("\tPress (q) Quit Application");
     }
-    // MODIFIES: this
-    // EFFECTS: processes user command
 
+    // MODIFIES: this
+    // EFFECTS: processes user's menu command
     public void processMenuCommand(String command) {
         if (command.equals("v")) {
             displayViewListings();
@@ -63,25 +63,30 @@ public class CarApp {
     }
 
     // EFFECTS: displays all currently added listings to ListOfCarListing
-    public boolean displayViewListings() {
+    public void displayViewListings() {
         System.out.println("\tCurrently Posted Listings:");
         List<CarListing> carListings = listOfCarListing.getListings();
-        if (carListings.size() == 0) {
-            System.out.println("There are currently no listings");
-            return false;
-        } else {
-            for (CarListing carlisting : carListings) {
-                System.out.print("\t Make: " + carlisting.getMake());
-                System.out.print("\t Model: " + carlisting.getModel());
-                System.out.print("\t Year: " + carlisting.getYear());
-                System.out.print("\t Mileage:" + carlisting.getMileage());
-                System.out.print("\t ID: " + carlisting.getId());
-                System.out.println();
-            }
-            return true;
-        }
+        ListOfCarListing.loopListOfCarListing(listOfCarListing);
     }
 
+    // EFFECTS: outputs message in case of no listings
+    public static void noListings() {
+        System.out.println("There are currently no listings");
+    }
+
+    // EFFECTS: displays details of a car listing
+    public static void displayListing(CarListing carlisting) {
+        System.out.print("\t Make: " + carlisting.getMake());
+        System.out.print("\t Model: " + carlisting.getModel());
+        System.out.print("\t Year: " + carlisting.getYear());
+        System.out.print("\t Mileage:" + carlisting.getMileage());
+        System.out.print("\t ID: " + carlisting.getId());
+        System.out.println();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sequence of prompts to get listing details, creates new listing
+    // based of those details, adds it to list of car listings
     public void addListingSequence() {
         System.out.println("Enter a make: ");
         addMake = input.next();
@@ -96,6 +101,8 @@ public class CarApp {
         System.out.println("Adding car listing!");
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds given car listing to ListOfCarListing
     public void addCarToListing(CarListing carListing) {
         listOfCarListing.addListingToList(carListing);
     }
