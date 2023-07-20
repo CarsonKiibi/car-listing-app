@@ -6,6 +6,13 @@ import model.ListOfCarListing;
 import java.util.List;
 import java.util.Scanner;
 
+// REFERENCE //
+// this project uses reference to "TellerApp" provided on edx.
+// https://github.students.cs.ubc.ca/CPSC210/TellerApp
+// CarApp(), runCarApp(), displayMainMenu(), and processMenuCommand() are
+// either inspired by or almost directly implement parts of TellerApp.
+
+// Car Listing Application
 public class CarApp {
     private Scanner input;
     private String addMake = null;
