@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// create a car listing
 public class CarListing {
     private static int nextPostId = 1;
     private int id;
@@ -11,17 +12,19 @@ public class CarListing {
     private String model;
     private int year;
     private int mileage;
+    private String desc; // listing description
 
     // MODIFIES: this
     // EFFECTS: creates car listing with post id (incremented after assigning), make, model,
     // year, and mileage
-    public CarListing(int id, String make, String model, int year, int mileage) {
+    public CarListing(int id, String make, String model, int year, int mileage, String desc) {
         this.id = nextPostId;
         nextPostId++;
         this.make = make;
         this.model = model;
         this.year = year;
         this.mileage = mileage;
+        this.desc = desc;
     }
 
     public int getId() {
@@ -42,6 +45,10 @@ public class CarListing {
 
     public int getMileage() {
         return this.mileage;
+    }
+
+    public String getDesc() {
+        return this.desc;
     }
 }
 

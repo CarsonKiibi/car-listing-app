@@ -19,6 +19,7 @@ public class CarApp {
     private String addModel = null;
     private int addYear = 0;
     private int addMileage = 0;
+    private String addDesc = null;
     private CarListing listing;
     private ListOfCarListing listOfCarListing;
 
@@ -38,7 +39,7 @@ public class CarApp {
 
         while (doContinue) {
             displayMainMenu();
-            command = input.next();
+            command = input.nextLine();
             command = command.toLowerCase();
 
             if (command.equals("q")) {
@@ -86,9 +87,10 @@ public class CarApp {
         System.out.print("\t Make: " + carlisting.getMake());
         System.out.print("\t Model: " + carlisting.getModel());
         System.out.print("\t Year: " + carlisting.getYear());
-        System.out.print("\t Mileage:" + carlisting.getMileage());
+        System.out.print("\t Mileage: " + carlisting.getMileage());
         System.out.print("\t ID: " + carlisting.getId());
-        System.out.println();
+        System.out.print("\t Extra information: " + carlisting.getDesc());
+        System.out.println("\n");
     }
 
     // MODIFIES: this
@@ -96,14 +98,18 @@ public class CarApp {
     // based of those details, adds it to list of car listings
     public void addListingSequence() {
         System.out.println("Enter a make: ");
-        addMake = input.next();
+        addMake = input.nextLine();
+//        input.nextLine();
         System.out.println("Enter a model: ");
-        addModel = input.next();
+        addModel = input.nextLine();
         System.out.println("Enter model year: ");
-        addYear = Integer.parseInt(input.next());
+        addYear = Integer.parseInt(input.nextLine());
         System.out.println("Enter mileage: ");
-        addMileage = Integer.parseInt(input.next());
-        listing = new CarListing(0, addMake, addModel, addYear, addMileage);
+        addMileage = Integer.parseInt(input.nextLine());
+        System.out.println("Enter any other information about your vehicle: ");
+        addDesc = input.nextLine();
+//        input.nextLine();
+        listing = new CarListing(0, addMake, addModel, addYear, addMileage, addDesc);
         addCarToListing(listing);
         System.out.println("Adding car listing!");
     }

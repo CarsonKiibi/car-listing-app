@@ -11,8 +11,8 @@ class TestCarListing {
 
     @BeforeEach
     void runBefore() {
-        testListing0 = new CarListing(0, "Ford", "Raptor", 2019, 1000);
-        testListing1 = new CarListing(1, "Toyota", "Camry", 2020, 5000);
+        testListing0 = new CarListing(0, "Ford", "Raptor", 2019, 1000, "missing steering wheel");
+        testListing1 = new CarListing(1, "Toyota", "Camry", 2020, 5000, "burnt out headlights");
     }
 
     @Test
