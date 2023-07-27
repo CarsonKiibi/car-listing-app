@@ -4,8 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
+// Code related to Json and corresponding tests inspired or directly used from:
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 // create a car listing
-public class CarListing {
+public class CarListing implements Writable {
     private static int nextPostId = 1;
     private int id;
     private String make;
@@ -49,6 +55,18 @@ public class CarListing {
 
     public String getDesc() {
         return this.desc;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("id", id);
+        json.put("make", make);
+        json.put("model", model);
+        json.put("year", year);
+        json.put("mileage", mileage);
+        json.put("desc", desc);
+        return json;
     }
 }
 

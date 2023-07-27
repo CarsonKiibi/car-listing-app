@@ -1,0 +1,29 @@
+{
+    "carListings": [
+        {
+            "year": 2000,
+            "model": "Explorer",
+            "id": 1,
+            "make": "Ford",
+            "mileage": 123123,
+            "desc": "Very nice"
+        },
+        {
+            "year": 2005,
+            "model": "Camry",
+            "id": 2,
+            "make": "Toyota",
+            "mileage": 235234,
+            "desc": "Kinda okay..."
+        },
+        {
+            "year": 200000,
+            "model": "boooyer",
+            "id": 3,
+            "make": "Bababab",
+            "mileage": 123123,
+            "desc": "Swagg"
+        }
+    ],
+    "name": "Default ListOfCarListings"
+}

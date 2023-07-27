@@ -2,7 +2,11 @@ package ui;
 
 import model.CarListing;
 import model.ListOfCarListing;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,21 +16,33 @@ import java.util.Scanner;
 // CarApp(), runCarApp(), displayMainMenu(), and processMenuCommand() are
 // either inspired by or almost directly implement parts of TellerApp.
 
+// Code related to Json and corresponding tests inspired or directly used from:
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
 // Car Listing Application
 public class CarApp {
     private Scanner input;
+
     private String addMake = null;
     private String addModel = null;
     private int addYear = 0;
     private int addMileage = 0;
     private String addDesc = null;
+
     private CarListing listing;
     private ListOfCarListing listOfCarListing;
 
+    private static final String JSON_STORE = "./data/carlistings.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
     // MODIFIES: this
     // EFFECTS: initializes new CarApp and creates ListOfCarListing
-    public CarApp() {
-        listOfCarListing = new ListOfCarListing();
+    public CarApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        listOfCarListing = new ListOfCarListing("Default ListOfCarListings");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runCarApp();
     }
 
@@ -57,6 +73,8 @@ public class CarApp {
         System.out.println("\nWould you like to:");
         System.out.println("\tPress (v) View Current Listings");
         System.out.println("\tPress (a) Add Listing");
+        System.out.println("\tPress (s) Save Listings to File");
+        System.out.println("\tPress (l) Load Listings from File");
         System.out.println("\tPress (q) Quit Application");
     }
 
@@ -67,6 +85,12 @@ public class CarApp {
             displayViewListings();
         } else if (command.equals("a")) {
             addListingSequence();
+        } else if (command.equals("s")) {
+            saveListings();
+        } else if (command.equals("l")) {
+            loadListings();
+        } else {
+            System.out.println("Invalid Selection");
         }
     }
 
@@ -118,5 +142,28 @@ public class CarApp {
     // EFFECTS: adds given car listing to ListOfCarListing
     public void addCarToListing(CarListing carListing) {
         listOfCarListing.addListingToList(carListing);
+    }
+
+    // EFFECTS: saves listings to file
+    private void saveListings() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(listOfCarListing);
+            jsonWriter.close();
+            System.out.println("Saved" + listOfCarListing.getName() + " to " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to write from file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads listings from file
+    private void loadListings() {
+        try {
+            listOfCarListing = jsonReader.read();
+            System.out.print("Loaded " + listOfCarListing.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }

@@ -1,18 +1,26 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import ui.CarApp;
 
 import java.util.ArrayList;
 import java.util.List;
 
-// creates a new list of cars
-public class ListOfCarListing {
+import persistence.Writable;
 
+// Code related to Json and corresponding tests inspired or directly used from:
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
+// creates a new list of cars
+public class ListOfCarListing implements Writable {
+    private String name;
     private List<CarListing> listings;
 
     // MODIFIES: this
     // EFFECTS: initializes new empty list of car listings
-    public ListOfCarListing() {
+    public ListOfCarListing(String name) {
+        this.name = name;
         listings = new ArrayList<>();
     }
 
@@ -31,6 +39,10 @@ public class ListOfCarListing {
         return listings.size();
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     // REQUIRES: carListings != null
     // EFFECTS: if list of car listings is empty, displays noListings() message and returns false,
     // otherwise displays each car listing and returns true
@@ -44,6 +56,25 @@ public class ListOfCarListing {
             }
             return true;
         }
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("carListings", listingsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns carListings in this listOfCarListings as a JSON array
+    private JSONArray listingsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (CarListing cl : listings) {
+            jsonArray.put(cl.toJson());
+        }
+
+        return jsonArray;
     }
 
 

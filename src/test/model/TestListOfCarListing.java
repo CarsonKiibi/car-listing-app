@@ -19,7 +19,7 @@ class TestListOfCarListing {
         testListing0 = new CarListing(0, "Ford", "Raptor", 2019, 1000, "perfect!");
         testListing1 = new CarListing(1, "Toyota", "Camry", 2020, 5000, "no engine included");
         testListing1Clone = new CarListing(1, "Toyota", "Camry", 2020, 5000, "terrible car");
-        testListings = new ListOfCarListing();
+        testListings = new ListOfCarListing("Listing1");
     }
 
     @Test

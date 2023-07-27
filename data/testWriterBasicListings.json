@@ -1,0 +1,21 @@
+{
+  "carListings": [
+    {
+      "year": 2019,
+      "model": "Model X",
+      "id": 1,
+      "make": "Tesla",
+      "mileage": 5000,
+      "desc": "Fast!"
+    },
+    {
+      "year": 2018,
+      "model": "Huayra",
+      "id": 2,
+      "make": "Pagani",
+      "mileage": 2500,
+      "desc": "Pretty!"
+    }
+  ],
+  "name": "Test Car Listings"
+}

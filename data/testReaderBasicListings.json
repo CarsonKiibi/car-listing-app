@@ -1,0 +1,21 @@
+{
+  "carListings": [
+    {
+      "year": 2000,
+      "model": "Explorer",
+      "id": 1,
+      "make": "Ford",
+      "mileage": 123123,
+      "desc": "Great!"
+    },
+    {
+      "year": 2005,
+      "model": "Camry",
+      "id": 2,
+      "make": "Toyota",
+      "mileage": 234234,
+      "desc": "Okay."
+    }
+  ],
+  "name": "Test Car Listings"
+}
