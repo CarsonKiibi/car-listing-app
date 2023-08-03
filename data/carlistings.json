@@ -1,28 +1,28 @@
 {
     "carListings": [
         {
-            "year": 2000,
-            "model": "Explorer",
+            "year": 2014,
+            "model": "918 Spyder",
             "id": 1,
-            "make": "Ford",
-            "mileage": 123123,
-            "desc": "Very nice"
+            "make": "Porsche",
+            "mileage": 6760,
+            "desc": "Speedy"
         },
         {
-            "year": 2005,
-            "model": "Camry",
+            "year": 2022,
+            "model": "Battista",
             "id": 2,
-            "make": "Toyota",
-            "mileage": 235234,
-            "desc": "Kinda okay..."
+            "make": "Paninfarina",
+            "mileage": 123,
+            "desc": "Electric"
         },
         {
-            "year": 200000,
-            "model": "boooyer",
+            "year": 123,
+            "model": "qweqwe",
             "id": 3,
-            "make": "Bababab",
-            "mileage": 123123,
-            "desc": "Swagg"
+            "make": "asdasd",
+            "mileage": 123,
+            "desc": "asdasd"
         }
     ],
     "name": "Default ListOfCarListings"

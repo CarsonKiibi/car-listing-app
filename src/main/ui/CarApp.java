@@ -5,6 +5,7 @@ import model.ListOfCarListing;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.Scanner;
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
 // Car Listing Application
-public class CarApp {
+public class CarApp extends JFrame {
     private Scanner input;
 
     private String addMake = null;
@@ -28,6 +29,7 @@ public class CarApp {
     private int addYear = 0;
     private int addMileage = 0;
     private String addDesc = null;
+    //private ImageIcon addImage = null;
 
     private CarListing listing;
     private ListOfCarListing listOfCarListing;
@@ -81,6 +83,7 @@ public class CarApp {
     // MODIFIES: this
     // EFFECTS: processes user's menu command
     public void processMenuCommand(String command) {
+        command.toLowerCase();
         if (command.equals("v")) {
             displayViewListings();
         } else if (command.equals("a")) {
@@ -133,7 +136,7 @@ public class CarApp {
         System.out.println("Enter any other information about your vehicle: ");
         addDesc = input.nextLine();
 //        input.nextLine();
-        listing = new CarListing(0, addMake, addModel, addYear, addMileage, addDesc);
+        listing = new CarListing(0, addMake, addModel, addYear, addMileage, addDesc); // addImage?
         addCarToListing(listing);
         System.out.println("Adding car listing!");
     }

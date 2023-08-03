@@ -7,6 +7,8 @@ import java.util.List;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import javax.swing.*;
+
 // Code related to Json and corresponding tests inspired or directly used from:
 // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
 
@@ -19,11 +21,14 @@ public class CarListing implements Writable {
     private int year;
     private int mileage;
     private String desc; // listing description
+    private ImageIcon image;
 
     // MODIFIES: this
     // EFFECTS: creates car listing with post id (incremented after assigning), make, model,
     // year, and mileage
-    public CarListing(int id, String make, String model, int year, int mileage, String desc) {
+    public CarListing(int id, String make, String model, int year,
+                      int mileage, String desc) {
+        // ImageIcon image?
         this.id = nextPostId;
         nextPostId++;
         this.make = make;
@@ -31,6 +36,7 @@ public class CarListing implements Writable {
         this.year = year;
         this.mileage = mileage;
         this.desc = desc;
+        //this.image = image;
     }
 
     public int getId() {
@@ -56,6 +62,10 @@ public class CarListing implements Writable {
     public String getDesc() {
         return this.desc;
     }
+
+    //public ImageIcon getImage() {
+    //   return this.image;
+    //}
 
     @Override
     public JSONObject toJson() {
