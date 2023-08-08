@@ -27,7 +27,7 @@ public class GUI extends JFrame {
 
     public GUI() {
         super("Car Listing App");
-        setSize(new Dimension(1280, 720));
+        setSize(new Dimension(800, 450));
         JLabel mainHeader = new JLabel("Auction App", JLabel.CENTER);
         initializeMainMenu();
         mainMenu.add(mainHeader);
@@ -61,4 +61,6 @@ public class GUI extends JFrame {
             setVisible(true);
         }
     }
+
+
 }

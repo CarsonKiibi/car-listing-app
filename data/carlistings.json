@@ -1,29 +1,4 @@
 {
-    "carListings": [
-        {
-            "year": 2014,
-            "model": "918 Spyder",
-            "id": 1,
-            "make": "Porsche",
-            "mileage": 6760,
-            "desc": "Speedy"
-        },
-        {
-            "year": 2022,
-            "model": "Battista",
-            "id": 2,
-            "make": "Paninfarina",
-            "mileage": 123,
-            "desc": "Electric"
-        },
-        {
-            "year": 123,
-            "model": "qweqwe",
-            "id": 3,
-            "make": "asdasd",
-            "mileage": 123,
-            "desc": "asdasd"
-        }
-    ],
+    "carListings": [],
     "name": "Default ListOfCarListings"
 }
