@@ -20,6 +20,7 @@ public class CarListing implements Writable {
     private String model;
     private int year;
     private int mileage;
+    private int price;
     private String desc; // listing description
     private ImageIcon image;
 
@@ -27,7 +28,7 @@ public class CarListing implements Writable {
     // EFFECTS: creates car listing with post id (incremented after assigning), make, model,
     // year, and mileage
     public CarListing(int id, String make, String model, int year,
-                      int mileage, String desc) {
+                      int mileage, int price, String desc) {
         // ImageIcon image?
         this.id = nextPostId;
         nextPostId++;
@@ -35,6 +36,7 @@ public class CarListing implements Writable {
         this.model = model;
         this.year = year;
         this.mileage = mileage;
+        this.price = price;
         this.desc = desc;
         //this.image = image;
     }
@@ -63,6 +65,10 @@ public class CarListing implements Writable {
         return this.desc;
     }
 
+    public int getPrice() {
+        return this.price;
+    }
+
     //public ImageIcon getImage() {
     //   return this.image;
     //}
@@ -75,6 +81,7 @@ public class CarListing implements Writable {
         json.put("model", model);
         json.put("year", year);
         json.put("mileage", mileage);
+        json.put("price", price);
         json.put("desc", desc);
         return json;
     }

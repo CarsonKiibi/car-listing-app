@@ -17,11 +17,16 @@ public class ListOfCarListing implements Writable {
     private String name;
     private List<CarListing> listings;
 
+    private int minPrice;
+    private int maxPrice;
+
     // MODIFIES: this
     // EFFECTS: initializes new empty list of car listings
     public ListOfCarListing(String name) {
         this.name = name;
         listings = new ArrayList<>();
+        minPrice = 0;
+        maxPrice = 100000000;
     }
 
     public List<CarListing> getListings() {
@@ -43,8 +48,25 @@ public class ListOfCarListing implements Writable {
         return this.name;
     }
 
+    public int getMinPrice() {
+        return this.minPrice;
+    }
+
+    public int getMaxPrice() {
+        return this.maxPrice;
+    }
+
+    public void setMaxPrice(int maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public void setMinPrice(int minPrice) {
+        this.minPrice = minPrice;
+    }
+
     // REQUIRES: carListings != null
     // EFFECTS: if list of car listings is empty, displays noListings() message and returns false,
+    // if the listing is too expensive or too cheap, displays noListings() message and returns false,
     // otherwise displays each car listing and returns true
     public static boolean loopListOfCarListing(ListOfCarListing carListings) {
         if (carListings.getSize() == 0) {
@@ -52,10 +74,17 @@ public class ListOfCarListing implements Writable {
             return false;
         } else {
             for (CarListing carlisting : carListings.getListings()) {
-                CarApp.displayListing(carlisting);
+                if (carlisting.getPrice() <= carListings.getMaxPrice()
+                        && carlisting.getPrice() >= carListings.getMinPrice()) {
+                    CarApp.displayListing(carlisting);
+                }
             }
             return true;
         }
+    }
+
+    public void removeListingFromList(CarListing carListing) {
+        listings.remove(carListing);
     }
 
     @Override

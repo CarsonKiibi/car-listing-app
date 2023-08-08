@@ -11,8 +11,8 @@ class TestCarListing {
 
     @BeforeEach
     void runBefore() {
-        testListing0 = new CarListing(0, "Ford", "Raptor", 2019, 1000, "missing steering wheel");
-        testListing1 = new CarListing(1, "Toyota", "Camry", 2020, 5000, "burnt out headlights");
+        testListing0 = new CarListing(0, "Ford", "Raptor", 2019, 1000, 10000, "missing steering wheel");
+        testListing1 = new CarListing(1, "Toyota", "Camry", 2020, 5000, 5000, "burnt out headlights");
     }
 
     @Test
@@ -22,6 +22,7 @@ class TestCarListing {
         assertEquals("Raptor", testListing0.getModel());
         assertEquals(2019, testListing0.getYear());
         assertEquals(1000, testListing0.getMileage());
+        assertEquals(10000, testListing0.getPrice());
     }
 
 }

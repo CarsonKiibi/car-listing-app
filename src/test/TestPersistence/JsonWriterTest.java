@@ -48,8 +48,8 @@ public class JsonWriterTest extends JsonTest {
     void testWriterBasicListings() {
         try {
             ListOfCarListing locl = new ListOfCarListing("Test Car Listings");
-            locl.addListingToList(new CarListing(1, "Tesla", "Model X", 2019, 5000, "Fast!"));
-            locl.addListingToList(new CarListing(2, "Pagani", "Huayra", 2018, 2500, "Pretty!"));
+            locl.addListingToList(new CarListing(1, "Tesla", "Model X", 2019, 5000, 100000, "Fast!"));
+            locl.addListingToList(new CarListing(2, "Pagani", "Huayra", 2018, 2500, 1000000, "Pretty!"));
             JsonWriter writer = new JsonWriter("./data/testWriterBasicListings");
             writer.open();
             writer.write(locl);

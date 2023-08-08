@@ -16,9 +16,9 @@ class TestListOfCarListing {
 
     @BeforeEach
     void runBefore() {
-        testListing0 = new CarListing(0, "Ford", "Raptor", 2019, 1000, "perfect!");
-        testListing1 = new CarListing(1, "Toyota", "Camry", 2020, 5000, "no engine included");
-        testListing1Clone = new CarListing(1, "Toyota", "Camry", 2020, 5000, "terrible car");
+        testListing0 = new CarListing(0, "Ford", "Raptor", 2019, 1000, 10000, "perfect!");
+        testListing1 = new CarListing(1, "Toyota", "Camry", 2020, 5000, 10000, "no engine included");
+        testListing1Clone = new CarListing(1, "Toyota", "Camry", 2020, 5000, 5000, "terrible car");
         testListings = new ListOfCarListing("Listing1");
     }
 
@@ -59,6 +59,23 @@ class TestListOfCarListing {
         assertTrue(ListOfCarListing.loopListOfCarListing(testListings));
         testListings.addListingToList(testListing1);
         assertTrue(ListOfCarListing.loopListOfCarListing(testListings));
+    }
+
+    @Test
+    void testRemoveListingFirst() {
+        testListings.addListingToList(testListing0);
+        testListings.addListingToList(testListing1);
+        assertEquals(2, testListings.getSize());
+        testListings.removeListingFromList(testListing0);
+        assertTrue(testListings.getListings().contains(testListing1));
+        assertFalse(testListings.getListings().contains(testListing0));
+    }
+
+    @Test
+    void testCantRemove() {
+        testListings.addListingToList(testListing1);
+        testListings.removeListingFromList(testListing0);
+        assertEquals(1, testListings.getSize());
     }
 
 }

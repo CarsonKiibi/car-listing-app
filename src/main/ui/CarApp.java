@@ -28,6 +28,7 @@ public class CarApp extends JFrame {
     private String addModel = null;
     private int addYear = 0;
     private int addMileage = 0;
+    private int addPrice = 0;
     private String addDesc = null;
     //private ImageIcon addImage = null;
 
@@ -116,6 +117,7 @@ public class CarApp extends JFrame {
         System.out.print("\t Year: " + carlisting.getYear());
         System.out.print("\t Mileage: " + carlisting.getMileage());
         System.out.print("\t ID: " + carlisting.getId());
+        System.out.print("\t Price: " + carlisting.getPrice());
         System.out.print("\t Extra information: " + carlisting.getDesc());
         System.out.println("\n");
     }
@@ -133,10 +135,12 @@ public class CarApp extends JFrame {
         addYear = Integer.parseInt(input.nextLine());
         System.out.println("Enter mileage: ");
         addMileage = Integer.parseInt(input.nextLine());
+        System.out.println("Add a price: ");
+        addPrice = Integer.parseInt(input.nextLine());
         System.out.println("Enter any other information about your vehicle: ");
         addDesc = input.nextLine();
 //        input.nextLine();
-        listing = new CarListing(0, addMake, addModel, addYear, addMileage, addDesc); // addImage?
+        listing = new CarListing(0, addMake, addModel, addYear, addMileage, addPrice, addDesc); // addImage?
         addCarToListing(listing);
         System.out.println("Adding car listing!");
     }

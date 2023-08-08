@@ -69,8 +69,9 @@ public class JsonReader {
         String model = jsonObject.getString("model");
         int year = jsonObject.getInt("year");
         int mileage = jsonObject.getInt("mileage");
+        int price = jsonObject.getInt("price");
         String desc = jsonObject.getString("desc");
-        CarListing carListing = new CarListing(id, make, model, year, mileage, desc);
+        CarListing carListing = new CarListing(id, make, model, year, mileage, price, desc);
         locl.addListingToList(carListing);
     }
 }
