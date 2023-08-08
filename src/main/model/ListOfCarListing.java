@@ -90,6 +90,8 @@ public class ListOfCarListing implements Writable {
         }
     }
 
+    // MODIFIES: listings
+    // EFFECTS: removes given carlisting from listings
     public void removeListingFromList(CarListing carListing) {
         listings.remove(carListing);
     }

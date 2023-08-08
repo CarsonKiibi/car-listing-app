@@ -18,6 +18,8 @@ features may overstep the requirements of the project so it is purely based on t
 - As a user, I want to be able to add a detailed car listing to a list of car listings within the application
 - As a user, I want the application to allow me to add my cars make, model, year and mileage to a listing
 - As a user, I want to view all other listings which may include my own
-- As a user, I want to be able to run the application and decide whether to view listings or add my own, or quit
+- As a user, I want to be able to run the application, and have options to save, load, add listing, view listings, exit
 - As a user, I want to be able to save the current state of the application (existing car listings)
-- As a user, i want to be able to re-open the saved state of the application
+- As a user, I want to be able to re-open the saved state of the application
+- As a user, I want to be able to remove a listing from the list of listings
+- As a user, I want to be able to filter listings by settings a minimum and maximum price
