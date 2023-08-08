@@ -1,4 +1,41 @@
 {
-    "carListings": [],
+    "carListings": [
+        {
+            "year": 123,
+            "price": 500000,
+            "model": "123",
+            "id": 2,
+            "make": "123",
+            "mileage": 123,
+            "desc": "NICE"
+        },
+        {
+            "year": 2009,
+            "price": 5000,
+            "model": "Explorer",
+            "id": 3,
+            "make": "Ford",
+            "mileage": 10000,
+            "desc": "BABA"
+        },
+        {
+            "year": 2003,
+            "price": 10000,
+            "model": "very nice",
+            "id": 4,
+            "make": "COol car",
+            "mileage": 19999,
+            "desc": "SUPER SWEET"
+        },
+        {
+            "year": 123,
+            "price": 500000,
+            "model": "123",
+            "id": 5,
+            "make": "123",
+            "mileage": 123,
+            "desc": "LOTS OF MILES"
+        }
+    ],
     "name": "Default ListOfCarListings"
 }

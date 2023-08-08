@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -17,6 +18,8 @@ public class GUI extends JFrame {
     private CarListing cl;
     private int maxPrice;
     private int minPrice;
+    private final int resetMaxPrice = 100000000;
+    private final int resetMinPrice = 0;
     private JsonReader jsonReader;
     private JsonWriter jsonWriter;
 
@@ -27,7 +30,7 @@ public class GUI extends JFrame {
     private JButton saveButton;
     private JButton loadButton;
     private JButton exitButton;
-    private JButton deleteButton;
+    private JButton removeButton;
 
     private JTextField minPriceField;
     private JTextField maxPriceField;
@@ -43,23 +46,40 @@ public class GUI extends JFrame {
 
     private static final String JSON_STORE = "./data/carlistings.json";
 
+    // EFFECTS: constructs a GUI with title, size, defaultCloseOperation
+    // sets max and min price to include all reasonable numbers
+    // adds button listeners, other menu components
     public GUI() {
         super("Car Listing App");
         setSize(new Dimension(800, 450));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        JLabel mainHeader = new JLabel("Auction App", JLabel.CENTER);
+
         minPrice = 0;
         maxPrice = 100000000;
 
+        JLabel addBanner = handleBanner("./data/carListingBanner.png", 780, 100);
         initializeMainMenu();
-        mainMenu.add(mainHeader);
+
+        mainMenu.add(addBanner);
         initializeMainMenuButtons(mainMenu);
         listingButtonListeners();
         persistenceButtonListeners();
-        
+
         setLocationRelativeTo(null);
     }
 
+    // REQUIRES: valid image file, positive integer width and height
+    // EFFECTS: creates properly scaled JLabel banner
+    private JLabel handleBanner(String filename, int width, int height) {
+        ImageIcon banner = new ImageIcon(filename);
+        Image scaledBanner = banner.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT);
+        JLabel addBanner = new JLabel();
+        addBanner.setIcon(new ImageIcon(scaledBanner));
+        return addBanner;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes main menu, JsonReader/Writer, ListOfCarListing
     public void initializeMainMenu() {
         mainMenu = new JPanel();
         add(mainMenu);
@@ -69,6 +89,8 @@ public class GUI extends JFrame {
         jsonReader = new JsonReader(JSON_STORE);
     }
 
+    // MODIFIES: panel
+    // EFFECTS: initializes and adds menu buttons to panel
     public void initializeMainMenuButtons(JPanel panel) {
         buttons = new ArrayList<JButton>();
         viewListingsButton = new JButton("View Listings");
@@ -92,11 +114,16 @@ public class GUI extends JFrame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up action listeners for viewListingsButton,
+    // addListingButton
     private void listingButtonListeners() {
         viewListingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 showCurrentListings();
+                locl.setMaxPrice(resetMaxPrice);
+                locl.setMinPrice(resetMinPrice);
             }
         });
         addListingButton.addActionListener(new ActionListener() {
@@ -105,14 +132,11 @@ public class GUI extends JFrame {
                 showAddListingDialog();
             }
         });
-//        addListingButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                removeListing();
-//            }
-//        });
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up action listeners for saveButton,
+    // loadButton, exitButton
     private void persistenceButtonListeners() {
         saveButton.addActionListener(new ActionListener() {
             @Override
@@ -136,7 +160,9 @@ public class GUI extends JFrame {
         });
     }
 
-    // Modify the showCurrentListings method
+    // MODIFIES: currentListingFrame
+    // EFFECTS: Displays current listings options,
+    // handles price filtering
     private void showCurrentListings() {
         if (currentListingFrame != null) {
             currentListingFrame.setVisible(false);
@@ -162,6 +188,8 @@ public class GUI extends JFrame {
         handleListingFrame(listingsFrame, filterPanel, listingsPanel);
     }
 
+    // MODIFIES: currentListingFrame
+    // EFFECTS: handles display of listing frame with filterPanel, listingsPanel
     private void handleListingFrame(JFrame listingsFrame, JPanel filterPanel, JPanel listingsPanel) {
         JScrollPane scrollPane = new JScrollPane(listingsPanel);
         listingsFrame.add(scrollPane, BorderLayout.CENTER);
@@ -173,6 +201,8 @@ public class GUI extends JFrame {
         listingsFrame.setVisible(true);
     }
 
+    // MODIFIES: locl
+    // EFFECTS: Initializes filter components, adds pricing fields
     private void handleFilter(JPanel filterPanel) {
         minPriceField = new JTextField(8);
         maxPriceField = new JTextField(8);
@@ -192,6 +222,8 @@ public class GUI extends JFrame {
         filterPanel.add(priceFilterButton);
     }
 
+    // MODIFIES: locl
+    // EFFECTS: sets max and min price fields and updates currentListings
     public void setPriceFields() {
         try {
             int max = Integer.parseInt(maxPriceField.getText());
@@ -205,16 +237,13 @@ public class GUI extends JFrame {
     }
 
 
-    // Helper method to create a JPanel for a listing
+    // EFFECTS: create listing panel with listing info, adds image
     private JPanel createListingPanel(CarListing carListing) {
         JPanel listingPanel = new JPanel();
         listingPanel.setBorder(BorderFactory.createEtchedBorder());
         listingPanel.setLayout(new BoxLayout(listingPanel, BoxLayout.Y_AXIS));
 
-        ImageIcon icon = new ImageIcon("./data/3143257.jpg");
-        Image scaleImage = icon.getImage().getScaledInstance(362, 180, Image.SCALE_DEFAULT); // 362 180
-        JLabel imageLabel = new JLabel();
-        imageLabel.setIcon(new ImageIcon(scaleImage));
+        JLabel imageLabel = handleBanner("./data/3143257.jpg", 362, 180);
 
         JLabel makeLabel = new JLabel("Make: " + carListing.getMake());
         JLabel modelLabel = new JLabel("Model: " + carListing.getModel());
@@ -230,8 +259,10 @@ public class GUI extends JFrame {
         return listingPanel;
     }
 
+    // MODIFIES: listingPanel
+    // EFFECTS: creates remove listing button and handles its functionality
     private void handleRemoveButton(CarListing carListing, JPanel listingPanel) {
-        JButton removeButton = new JButton("Remove Listing");
+        removeButton = new JButton("Remove Listing");
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -243,6 +274,8 @@ public class GUI extends JFrame {
         listingPanel.add(removeButton);
     }
 
+    // MODIFIES: listingPanel
+    // EFFECTS: adds all car info to listingPanel by taking in required fields
     private void addLabelsToListing(JPanel listingPanel, JLabel imageLabel, JLabel makeLabel, JLabel modelLabel,
                                     JLabel yearLabel, JLabel mileageLabel, JLabel priceLabel, JLabel descLabel) {
         listingPanel.add(imageLabel);
@@ -254,15 +287,19 @@ public class GUI extends JFrame {
         listingPanel.add(descLabel);
     }
 
+    // MODIFIES: locl
+    // EFFECTS: removes specified car listing from locl
     private void removeListing(CarListing carListing) {
         locl.removeListingFromList(carListing);
     }
 
+    // EFFECTS: displays info for adding new listing
     private void showAddListingDialog() {
         JFrame addListingFrame = createAddListingFrame();
         addListingFrame.setVisible(true);
     }
 
+    // EFFECTS: creates listing frame and calls for fields to be added
     private JFrame createAddListingFrame() {
         JFrame addListingFrame = new JFrame("Add Listing");
         addListingFrame.setLayout(new GridLayout(7, 2, 25, 25)); //?
@@ -274,6 +311,8 @@ public class GUI extends JFrame {
         return addListingFrame;
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes and adds fields for entering car info
     private void handleAddListingFields(JFrame addListingFrame) {
         JTextField makeField = new JTextField();
         JTextField modelField = new JTextField();
@@ -302,6 +341,8 @@ public class GUI extends JFrame {
         addListingFrame.add(addButton);
     }
 
+    // MODIFIES: locl
+    // EFFECTS: adds fields for new car listing if user input is valid, closes add panel
     private void addListingButtonAction(JFrame addListingFrame, JTextField makeField, JTextField modelField,
                                         JTextField yearField, JTextField mileageField, JTextField priceField,
                                         JTextField descField,
@@ -320,11 +361,13 @@ public class GUI extends JFrame {
                 } catch (Exception exception) {
                     JOptionPane.showMessageDialog(null, "Please enter fields correctly");
                 }
+                addListingFrame.setVisible(false);
             }
         });
     }
 
-
+    // MODIFIES: JSON_STORE
+    // EFFECTS: Saves car listings to JSON file
     private void saveListings() {
         try {
             jsonWriter.open();
@@ -336,6 +379,8 @@ public class GUI extends JFrame {
         }
     }
 
+    // MODIFIES: locl, JSON_STORE
+    // EFFECTS: Loads car listings from JSON file
     private void loadListings() {
         try {
             locl = jsonReader.read();
@@ -345,9 +390,10 @@ public class GUI extends JFrame {
         }
     }
 
+    // MODIFIES: locl
+    // EFFECTS: Adds given car listing to list
     public void addCarToListing(CarListing carListing) {
         locl.addListingToList(carListing);
     }
-
 
 }

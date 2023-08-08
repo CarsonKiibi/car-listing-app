@@ -69,6 +69,8 @@ public class ListOfCarListing implements Writable {
     // if the listing is too expensive or too cheap, displays noListings() message and returns false,
     // otherwise displays each car listing and returns true
     public static boolean loopListOfCarListing(ListOfCarListing carListings) {
+        int allTrue = carListings.getSize();
+        int count = 0;
         if (carListings.getSize() == 0) {
             CarApp.noListings();
             return false;
@@ -77,9 +79,14 @@ public class ListOfCarListing implements Writable {
                 if (carlisting.getPrice() <= carListings.getMaxPrice()
                         && carlisting.getPrice() >= carListings.getMinPrice()) {
                     CarApp.displayListing(carlisting);
+                    count++;
                 }
             }
-            return true;
+            if (count == allTrue) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 

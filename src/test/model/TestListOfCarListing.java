@@ -16,10 +16,13 @@ class TestListOfCarListing {
 
     @BeforeEach
     void runBefore() {
-        testListing0 = new CarListing(0, "Ford", "Raptor", 2019, 1000, 10000, "perfect!");
+        testListing0 = new CarListing(0, "Ford", "Raptor", 2019, 1000, 5000, "perfect!");
         testListing1 = new CarListing(1, "Toyota", "Camry", 2020, 5000, 10000, "no engine included");
-        testListing1Clone = new CarListing(1, "Toyota", "Camry", 2020, 5000, 5000, "terrible car");
+        testListing1Clone = new CarListing(1, "Toyota", "Camry", 2020, 5000, 10000, "terrible car");
         testListings = new ListOfCarListing("Listing1");
+        testListings.setMinPrice(5000);
+        testListings.setMaxPrice(9999);
+
     }
 
     @Test
@@ -53,12 +56,12 @@ class TestListOfCarListing {
     }
 
     @Test
-    void loopListOfCarListingTest() {
+    void loopListOfCarListingTestOneOutOfBounds() {
         assertFalse(ListOfCarListing.loopListOfCarListing(testListings));
         testListings.addListingToList(testListing0);
         assertTrue(ListOfCarListing.loopListOfCarListing(testListings));
         testListings.addListingToList(testListing1);
-        assertTrue(ListOfCarListing.loopListOfCarListing(testListings));
+        assertFalse(ListOfCarListing.loopListOfCarListing(testListings));
     }
 
     @Test
