@@ -56,11 +56,19 @@ class TestListOfCarListing {
     }
 
     @Test
-    void loopListOfCarListingTestOneOutOfBounds() {
+    void testLoopOverMax() {
         assertFalse(ListOfCarListing.loopListOfCarListing(testListings));
         testListings.addListingToList(testListing0);
         assertTrue(ListOfCarListing.loopListOfCarListing(testListings));
         testListings.addListingToList(testListing1);
+        assertFalse(ListOfCarListing.loopListOfCarListing(testListings));
+    }
+
+    @Test
+    void testLoopUnderMin() {
+        testListings.setMinPrice(9999);
+        testListings.setMaxPrice(10001);
+        testListings.addListingToList(testListing0);
         assertFalse(ListOfCarListing.loopListOfCarListing(testListings));
     }
 
