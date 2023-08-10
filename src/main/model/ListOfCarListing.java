@@ -37,7 +37,7 @@ public class ListOfCarListing implements Writable {
     // EFFECTS: adds a given carListing to the current list of car listings
     public void addListingToList(CarListing carlisting) {
         listings.add(carlisting);
-        EventLog.getInstance().logEvent(new Event("Added car listing to list of listings"));
+        EventLog.getInstance().logEvent(new Event("Added car listing to list of listings."));
     }
 
     // EFFECTS: returns size of list of car listings
@@ -94,7 +94,7 @@ public class ListOfCarListing implements Writable {
             EventLog.getInstance().logEvent(new Event("All listings were in price range."));
             return true;
         } else if (count >= 1) {
-            EventLog.getInstance().logEvent(new Event(count + " listings were in price range"));
+            EventLog.getInstance().logEvent(new Event(count + " listings were in price range."));
             return true;
         } else {
             EventLog.getInstance().logEvent(new Event("Looped car listings, "

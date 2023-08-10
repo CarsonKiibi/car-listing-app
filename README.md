@@ -23,3 +23,54 @@ features may overstep the requirements of the project so it is purely based on t
 - As a user, I want to be able to re-open the saved state of the application
 - As a user, I want to be able to remove a listing from the list of listings
 - As a user, I want to be able to filter listings by settings a minimum and maximum price
+
+## Phase 4, Task 2
+
+- User opens app
+- User adds a listing with low price
+- User views listings
+- User adds a listing with high price
+- User views listings
+- User applies filter bounds to filter out low price listing
+- User views listings, only 1 listing on view listing page
+- User closes app
+
+LOG:
+
+Wed Aug 09 21:57:07 PDT 2023
+Added car listing to list of listings.
+
+Wed Aug 09 21:57:09 PDT 2023
+Looped car listings, displayed a listing.
+
+Wed Aug 09 21:57:09 PDT 2023
+All listings were in price range.
+
+Wed Aug 09 21:57:26 PDT 2023
+Added car listing to list of listings.
+
+Wed Aug 09 21:57:28 PDT 2023
+Looped car listings, displayed a listing.
+
+Wed Aug 09 21:57:28 PDT 2023
+Looped car listings, displayed a listing.
+
+Wed Aug 09 21:57:28 PDT 2023
+All listings were in price range.
+
+Wed Aug 09 21:57:33 PDT 2023
+Looped car listings, displayed a listing.
+
+Wed Aug 09 21:57:33 PDT 2023
+1 listings were in price range.
+
+## Phase 4, Task 3
+
+A very important change I would make would be splitting the GUI up into more
+classes in the UI folder. Right now it is difficult to navigate or gather
+much of what it is actually doing on the UML diagram. Examples would be a separate
+file for the menu, addListings, view listings at the very least. With that addition,
+a user could gather more of what the app actually does just from the UML diagram.
+I would also like to make a super class listing() and then have carListing, truckListing,
+etc so the user could have more options for types of listings. This could even give room
+to make a craigslist type app where you could post literally anything.
