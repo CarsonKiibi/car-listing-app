@@ -29,7 +29,6 @@ public class CarListing implements Writable {
     // year, and mileage
     public CarListing(int id, String make, String model, int year,
                       int mileage, int price, String desc) {
-        // ImageIcon image?
         this.id = nextPostId;
         nextPostId++;
         this.make = make;
@@ -38,7 +37,6 @@ public class CarListing implements Writable {
         this.mileage = mileage;
         this.price = price;
         this.desc = desc;
-        //this.image = image;
     }
 
     public int getId() {

@@ -1,6 +1,8 @@
 package ui;
 
 import model.CarListing;
+import model.Event;
+import model.EventLog;
 import model.ListOfCarListing;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -9,11 +11,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GUI extends JFrame {
+public class GUI extends JFrame implements WindowListener {
     private ListOfCarListing locl;
     private CarListing cl;
     private int maxPrice;
@@ -53,7 +57,6 @@ public class GUI extends JFrame {
         super("Car Listing App");
         setSize(new Dimension(800, 450));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         minPrice = 0;
         maxPrice = 100000000;
 
@@ -64,6 +67,7 @@ public class GUI extends JFrame {
         initializeMainMenuButtons(mainMenu);
         listingButtonListeners();
         persistenceButtonListeners();
+        addWindowListener(this);
 
         setLocationRelativeTo(null);
     }
@@ -155,9 +159,17 @@ public class GUI extends JFrame {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                logEvents();
                 System.exit(0);
             }
         });
+    }
+
+    private void logEvents() {
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event.toString());
+            System.out.print("\n");
+        }
     }
 
     // MODIFIES: currentListingFrame
@@ -184,6 +196,7 @@ public class GUI extends JFrame {
                 listingsPanel.add(listingPanel);
             }
         }
+        locl.loopListOfCarListing(locl);
 
         handleListingFrame(listingsFrame, filterPanel, listingsPanel);
     }
@@ -396,4 +409,38 @@ public class GUI extends JFrame {
         locl.addListingToList(carListing);
     }
 
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        logEvents();
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
+    }
 }

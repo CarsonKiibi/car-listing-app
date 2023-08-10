@@ -37,6 +37,7 @@ public class ListOfCarListing implements Writable {
     // EFFECTS: adds a given carListing to the current list of car listings
     public void addListingToList(CarListing carlisting) {
         listings.add(carlisting);
+        EventLog.getInstance().logEvent(new Event("Added car listing to list of listings"));
     }
 
     // EFFECTS: returns size of list of car listings
@@ -72,21 +73,33 @@ public class ListOfCarListing implements Writable {
         int allTrue = carListings.getSize();
         int count = 0;
         if (carListings.getSize() == 0) {
-            CarApp.noListings();
+            //CarApp.noListings();
+            EventLog.getInstance().logEvent(new Event("Looped car listings, no listings."));
             return false;
         } else {
             for (CarListing carlisting : carListings.getListings()) {
                 if (carlisting.getPrice() <= carListings.getMaxPrice()
                         && carlisting.getPrice() >= carListings.getMinPrice()) {
-                    CarApp.displayListing(carlisting);
+                    //CarApp.displayListing(carlisting);
                     count++;
+                    EventLog.getInstance().logEvent(new Event("Looped car listings, displayed a listing."));
                 }
             }
-            if (count == allTrue) {
-                return true;
-            } else {
-                return false;
-            }
+            return checkLooped(allTrue, count);
+        }
+    }
+
+    private static boolean checkLooped(int allTrue, int count) {
+        if (count == allTrue) {
+            EventLog.getInstance().logEvent(new Event("All listings were in price range."));
+            return true;
+        } else if (count >= 1) {
+            EventLog.getInstance().logEvent(new Event(count + " listings were in price range"));
+            return true;
+        } else {
+            EventLog.getInstance().logEvent(new Event("Looped car listings, "
+                    + "all listings were outside of price range."));
+            return false;
         }
     }
 
@@ -94,6 +107,7 @@ public class ListOfCarListing implements Writable {
     // EFFECTS: removes given carlisting from listings
     public void removeListingFromList(CarListing carListing) {
         listings.remove(carListing);
+        EventLog.getInstance().logEvent(new Event("Removed car listing from list."));
     }
 
     @Override
@@ -114,6 +128,4 @@ public class ListOfCarListing implements Writable {
 
         return jsonArray;
     }
-
-
 }
