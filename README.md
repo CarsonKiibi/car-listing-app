@@ -67,7 +67,7 @@ Wed Aug 09 21:57:33 PDT 2023
 ## Phase 4, Task 3
 
 A very important change I would make would be splitting the GUI up into more
-classes in the UI folder. Right now it is difficult to navigate or gather
+classes in the UI folder. Right now it is difficult to navigate or change
 much of what it is actually doing on the UML diagram. Examples would be a separate
 file for the menu, addListings, view listings at the very least. With that addition,
 a user could gather more of what the app actually does just from the UML diagram.
