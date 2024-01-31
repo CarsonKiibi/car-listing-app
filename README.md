@@ -1,4 +1,6 @@
-# My Personal Project
+# Car Listing Application
+
+Uses Java, Java Swing, and JUnit. It was created as a project for CPSC 210 at UBC.
 
 **Car market application**. The application will allow a user to view a collection of cars for sale,
 and list their own car as well. Each car for sale will have details that the user must enter when
