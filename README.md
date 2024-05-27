@@ -1,6 +1,6 @@
 # Car Listing Application
 
-Uses Java, Java Swing, and JUnit. It was created as a project for CPSC 210 at UBC.
+Uses Java, Java Swing, and JUnit.
 
 **Car market application**. The application will allow a user to view a collection of cars for sale,
 and list their own car as well. Each car for sale will have details that the user must enter when
@@ -26,7 +26,7 @@ features may overstep the requirements of the project so it is purely based on t
 - As a user, I want to be able to remove a listing from the list of listings
 - As a user, I want to be able to filter listings by settings a minimum and maximum price
 
-## Phase 4, Task 2
+  # Example Usage
 
 - User opens app
 - User adds a listing with low price
@@ -66,13 +66,3 @@ Looped car listings, displayed a listing.
 Wed Aug 09 21:57:33 PDT 2023
 1 listings were in price range.
 
-## Phase 4, Task 3
-
-A very important change I would make would be splitting the GUI up into more
-classes in the UI folder. Right now it is difficult to navigate or change
-much of what it is actually doing on the UML diagram. Examples would be a separate
-file for the menu, addListings, view listings at the very least. With that addition,
-a user could gather more of what the app actually does just from the UML diagram.
-I would also like to make a super class listing() and then have carListing, truckListing,
-etc so the user could have more options for types of listings. This could even give room
-to make a craigslist type app where you could post literally anything.
